@@ -1,4 +1,3 @@
-# API Flask Mongo - Projeto
 
 ![Tela de Login](frontend/assets/image.png)
 
