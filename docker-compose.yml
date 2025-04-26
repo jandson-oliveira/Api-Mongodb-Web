@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   mongodb:
     image: bitnami/mongodb:4.4
@@ -42,6 +40,16 @@ services:
     volumes:
      - ./backend:/app
 
+  frontend:
+    image: nginx:alpine # Substitua com a imagem Docker do seu frontend
+    container_name: frontend
+    restart: unless-stopped
+    ports:
+      - "8080:80"  # O frontend estará acessível na porta 8080
+    volumes:
+      - ./frontend:/app  # Caso você queira fazer um bind mount para o frontend local
+      - ./frontend:/usr/share/nginx/html:ro  # Mapeamento DIRETO
+      
 volumes:
   mongodb_data:
     driver: local

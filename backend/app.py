@@ -1,7 +1,7 @@
-from flask import Flask, request, jsonify, send_file
-from flask_pymongo import PyMongo
-from bson.objectid import ObjectId
-import gridfs
+from flask import Flask, request, jsonify, send_file # type: ignore
+from flask_pymongo import PyMongo # type: ignore
+from bson.objectid import ObjectId # type: ignore
+import gridfs # type: ignore
 from io import BytesIO
 import os
 
