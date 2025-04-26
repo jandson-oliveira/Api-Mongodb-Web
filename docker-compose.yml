@@ -1,0 +1,47 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: bitnami/mongodb:4.4
+    container_name: mongodb
+    restart: always
+    environment:
+      - MONGODB_ROOT_USER=root
+      - MONGODB_ROOT_PASSWORD=Z2ay3y20JsqSRD
+      - MONGODB_USERNAME=api_user
+      - MONGODB_PASSWORD=Z2ay3y20JsqSRD
+      - MONGODB_DATABASE=database-TuxOps
+      - ALLOW_EMPTY_PASSWORD=no
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/bitnami/mongodb
+      - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+    healthcheck:
+      test: >
+        mongosh --host 127.0.0.1 --port 27017
+        -u root -p $$MONGODB_ROOT_PASSWORD --authenticationDatabase admin
+        --eval "db.adminCommand('ping')"
+      interval: 15s
+      timeout: 30s
+      retries: 3
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: api
+    restart: unless-stopped
+    depends_on:
+      mongodb:
+        condition: service_healthy
+    ports:
+      - "5000:5000"
+    environment:
+      MONGO_URI: "mongodb://api_user:Z2ay3y20JsqSRD@mongodb:27017/database-TuxOps?authSource=database-TuxOps"
+    volumes:
+     - ./backend:/app
+
+volumes:
+  mongodb_data:
+    driver: local
