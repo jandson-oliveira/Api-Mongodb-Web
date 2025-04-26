@@ -15,21 +15,24 @@ com dados iniciais (como a criação de usuários) toda vez que o ambiente fosse
 
 
 1. Clone o repositório:
+```bash
 git clone git@github.com:jandson-oliveira/Api-Mongodb-Web.git
 cd /Api-Mongodb-Web
-
-```bash
-
-cd seu-repo
 ```
 
 2. Suba os containers:
 
 ```bash
-docker-compose up -d
+docker compose up -d
 ```
 
-3. Acesse:
+3. Deu problema nos containers:
+
+```bash
+docker compose down
+```
+
+4. Acesse:
 
 - API Flask: `http://localhost:5000`
 - Frontend: `http://localhost:8080/login.html`
