@@ -15,9 +15,11 @@ com dados iniciais (como a criação de usuários) toda vez que o ambiente fosse
 
 
 1. Clone o repositório:
+git clone git@github.com:jandson-oliveira/Api-Mongodb-Web.git
+cd /Api-Mongodb-Web
 
 ```bash
-git clone https://github.com/seu-usuario/seu-repo.git
+
 cd seu-repo
 ```
 
